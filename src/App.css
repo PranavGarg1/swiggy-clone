@@ -41,7 +41,8 @@
 .res-container{
     display: flex;
     flex-wrap: wrap;
-    margin: 20px;
+    margin: 0 45px;
+    
 }
 
 .res-card{
