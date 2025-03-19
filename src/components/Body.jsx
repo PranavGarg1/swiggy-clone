@@ -9,7 +9,7 @@ const [input, setInput] = useState("");
     
   useEffect(()=>{
     fetchData("https://www.swiggy.com/dapi/restaurants/list/v5?lat=30.7262317&lng=76.8562405&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
-  },[resList])
+  },[])
 
   const fetchData = async (url) =>{
     const data = await fetch(url);
@@ -18,16 +18,18 @@ const [input, setInput] = useState("");
     setFiltResList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
   }
 
-  const handleInput =(e) =>{
-    const searchedText = e.target.value;
-    setInput(searchedText)
-    console.log(input)
-    setFiltResList(resList.filter((res)=> res.info.name.toLowerCase().includes(input.toLowerCase())))
+  const handleSearchButton=()=>{
+      const temList = resList.filter((res) =>
+      res.info.name.toLowerCase().includes(input.toLowerCase()));
+      setFiltResList(temList)
+      setInput("")
   }
 
     return(
         <div className="body">
-            <input value={input} onChange={handleInput} className="search" placeholder="search..."></input>
+            <input value={input} onChange={(e)=>setInput(e.target.value)} className="search" placeholder="search..."></input>
+            <button className="btn" onClick={handleSearchButton}>Search</button>
+            <button className="btn" onClick={()=>setFiltResList(resList)}>See all restaurants</button>
             <div className="res-container">
             {
               filtResList == 0
