@@ -4,6 +4,8 @@ import ResCard from "./ResCard";
 function Body(){
     
 const [resList, setResList] = useState([]);
+const [filtResList, setFiltResList] = useState([]);
+const [input, setInput] = useState("");
     
   useEffect(()=>{
     fetchData("https://www.swiggy.com/dapi/restaurants/list/v5?lat=30.7262317&lng=76.8562405&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
@@ -13,15 +15,22 @@ const [resList, setResList] = useState([]);
     const data = await fetch(url);
     const json = await data.json();
     setResList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    setFiltResList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+  }
+
+  const handleInput =(e) =>{
+    const searchedText = e.target.value;
+    setInput(searchedText)
+    console.log(input)
+    setFiltResList(resList.filter((res)=> res.info.name.toLowerCase().includes(input.toLowerCase())))
   }
 
     return(
         <div className="body">
-            <input  className="search" placeholder="........"></input>
-            <button className="btn">Search</button>
+            <input value={input} onChange={handleInput} className="search" placeholder="search..."></input>
             <div className="res-container">
             {
-              resList == 0
+              filtResList == 0
               ?
               <div className="flex flex-wrap">
               <div className="shimmer-res-card"></div>
@@ -37,7 +46,7 @@ const [resList, setResList] = useState([]);
               </div>
               :
 
-                resList.map((item)=>{
+                filtResList.map((item)=>{
                     return(
                         <ResCard resInfo = {item.info} key={item.info.id}/>
                     )
