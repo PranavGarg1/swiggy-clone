@@ -17,15 +17,33 @@ const [resList, setResList] = useState([]);
 
     return(
         <div className="body">
-            <input  className="search" placeholder="search..."></input>
+            <input  className="search" placeholder="........"></input>
+            <button className="btn">Search</button>
             <div className="res-container">
             {
+              resList == 0
+              ?
+              <div className="flex flex-wrap">
+              <div className="shimmer-res-card"></div>
+              <div className="shimmer-res-card"></div>
+              <div className="shimmer-res-card"></div>
+              <div className="shimmer-res-card"></div>
+              <div className="shimmer-res-card"></div>
+              <div className="shimmer-res-card"></div>
+              <div className="shimmer-res-card"></div>
+              <div className="shimmer-res-card"></div>
+              <div className="shimmer-res-card"></div>
+              <div className="shimmer-res-card"></div>
+              </div>
+              :
+
                 resList.map((item)=>{
                     return(
                         <ResCard resInfo = {item.info} key={item.info.id}/>
                     )
                 })
             }
+              
             </div>
         </div>
     )
