@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 
 .header{
     display: flex;
@@ -20,7 +22,10 @@
 .nav-items ul li{
     margin: 20px;
     cursor: pointer;
-
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 800;
+    font-size: larger;
+    font-style: normal;
 }
 
 .body{
@@ -35,7 +40,7 @@
     border: 1px solid black;
     margin: 5px;
     border-radius: 35px;
-    cursor: pointer;
+    cursor: auto;
 }
 
 .res-container{
