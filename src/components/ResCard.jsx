@@ -1,6 +1,6 @@
 import { imgs } from "./images";
 
-function ResCard({resInfo , c}){
+function ResCard({resInfo}){
 
     return(
         <div className="res-card">

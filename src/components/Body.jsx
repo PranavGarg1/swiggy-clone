@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ResCard from "./ResCard";
+import { Link } from "react-router-dom";
 
 function Body(){
     
@@ -34,7 +35,7 @@ const [input, setInput] = useState("");
             {
               filtResList == 0
               ?
-              <div className="flex flex-wrap">
+              <>
               <div className="shimmer-res-card"></div>
               <div className="shimmer-res-card"></div>
               <div className="shimmer-res-card"></div>
@@ -45,12 +46,13 @@ const [input, setInput] = useState("");
               <div className="shimmer-res-card"></div>
               <div className="shimmer-res-card"></div>
               <div className="shimmer-res-card"></div>
-              </div>
+              </>
               :
 
                 filtResList.map((item)=>{
                     return(
-                        <ResCard resInfo = {item.info} key={item.info.id}/>
+                        <Link to={"/restaurants/" + item.info.id}  key={item.info.id} ><ResCard resInfo = {item.info}/></Link>
+                        
                     )
                 })
             }
