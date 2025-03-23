@@ -39,6 +39,7 @@ const router = createBrowserRouter([
   {
     path: "/restaurants/:resId",
     element: <ResMenu/>,
+    errorElement: <Error/>
   },
 ])
 
