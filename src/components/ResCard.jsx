@@ -13,4 +13,15 @@ function ResCard({resInfo}){
     )
 }
 
+export const withRatingLabel= (ResCard) =>{
+    return(props) =>{
+        return(
+            <div>
+                <label className="absolute bg-black text-white font-thin w-16 mx-5 p-1">High Rated</label>
+                <ResCard {...props}/>
+            </div>
+        )
+    }
+}
+
 export default ResCard;

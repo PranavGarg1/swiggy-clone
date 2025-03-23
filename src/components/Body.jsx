@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ResCard from "./ResCard";
+import ResCard, { withRatingLabel } from "./ResCard";
 import { Link } from "react-router-dom";
 import Shimmer from "./Temp";
 
@@ -28,6 +28,8 @@ const [input, setInput] = useState("");
       setInput("")
   }
 
+  const ResCardHighRating = withRatingLabel(ResCard)
+
     return(
         <div>
           <div className="flex justify-center items-center mt-4">
@@ -44,7 +46,16 @@ const [input, setInput] = useState("");
 
                 filtResList.map((item)=>{
                     return(
-                        <Link to={"/restaurants/" + item.info.id}  key={item.info.id} ><ResCard resInfo = {item.info}/></Link>
+                        <Link to={"/restaurants/" + item.info.id}  key={item.info.id} >
+                          {
+                            item.info.avgRating >= 4.5
+                            ?
+                              <ResCardHighRating resInfo= {item.info}/>
+                            :
+
+                              <ResCard resInfo = {item.info}/>
+                          }
+                        </Link>
                         
                     )
                 })
