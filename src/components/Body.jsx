@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import ResCard from "./ResCard";
 import { Link } from "react-router-dom";
+import Shimmer from "./Temp";
+
 
 function Body(){
     
@@ -27,26 +29,17 @@ const [input, setInput] = useState("");
   }
 
     return(
-        <div className="body">
-            <input value={input} onChange={(e)=>setInput(e.target.value)} className="search" placeholder="search..."></input>
-            <button className="btn" onClick={handleSearchButton}>Search</button>
-            <button className="btn" onClick={()=>setFiltResList(resList)}>See all restaurants</button>
-            <div className="res-container">
+        <div>
+          <div className="flex justify-center items-center mt-4">
+            <input value={input} onChange={(e)=>setInput(e.target.value)} className="border-3 rounded-3xl text-1xl h-10 w-90 px-2 mx-2 cursor-auto" placeholder="search..."></input>
+            <button className="min-w-40 bg-[#ff7300] text-white h-10 rounded-3xl m-1 hover:border-3 cursor-pointer" onClick={handleSearchButton}>Search</button>
+            <button className="min-w-40 bg-[#ff7300] text-white h-10 rounded-3xl m-1 hover:border-3 cursor-pointer" onClick={()=>setFiltResList(resList)}>See all restaurants</button>
+          </div>
+          <div className="flex flex-wrap justify-center">
             {
               filtResList == 0
               ?
-              <>
-              <div className="shimmer-res-card"></div>
-              <div className="shimmer-res-card"></div>
-              <div className="shimmer-res-card"></div>
-              <div className="shimmer-res-card"></div>
-              <div className="shimmer-res-card"></div>
-              <div className="shimmer-res-card"></div>
-              <div className="shimmer-res-card"></div>
-              <div className="shimmer-res-card"></div>
-              <div className="shimmer-res-card"></div>
-              <div className="shimmer-res-card"></div>
-              </>
+                <Shimmer/>
               :
 
                 filtResList.map((item)=>{
@@ -57,7 +50,7 @@ const [input, setInput] = useState("");
                 })
             }
               
-            </div>
+          </div>
         </div>
     )
 }

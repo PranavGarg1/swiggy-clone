@@ -10,11 +10,11 @@ const ResMenu= () =>{
 
     return(
         <>
-            <div  className="menu-container">
-                    <p className="resName">{resInfo?.cards[2]?.card?.card?.info.name}</p>
-                    <p className="resName">{resInfo?.cards[2]?.card?.card?.info.cuisines.join(", ")}</p>
-                    <p className="resName">{resInfo?.cards[2]?.card?.card?.info.costForTwoMessage}</p>
-                    <p className="text">Menu</p>
+            <div  className="flex flex-col items-center p-5 mx-auto text-3xl">
+                    <p>{resInfo?.cards[2]?.card?.card?.info.name}</p>
+                    <p>{resInfo?.cards[2]?.card?.card?.info.cuisines.join(", ")}</p>
+                    <p>{resInfo?.cards[2]?.card?.card?.info.costForTwoMessage}</p>
+                    <p>Menu</p>
                     {
                         resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards.map((i)=>{
                             return(
