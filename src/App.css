@@ -3,6 +3,8 @@
 body{
     font-family: "Bebas Neue", sans-serif;
     font-style: normal;
+    box-sizing: border-box;
+    text-overflow: hidden;
 }
 
 .active{

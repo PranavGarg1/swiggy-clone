@@ -1,30 +1,34 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestautantMenu";
-
+import ResMenuCategory from "../components/ResMenuCategory";
+import { useState } from "react";
 
 const ResMenu= () =>{
     const {resId} = useParams();
 
     const  resInfo = useRestaurantMenu(resId)
 
+    const categories = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(c=> c?.card?.card?.["@type"] == "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory") 
+
     return(
         <>
-            <div  className="flex flex-col items-center p-5 mx-auto text-3xl">
-                    <p>{resInfo?.cards[2]?.card?.card?.info.name}</p>
-                    <p>{resInfo?.cards[2]?.card?.card?.info.cuisines.join(", ")}</p>
-                    <p>{resInfo?.cards[2]?.card?.card?.info.costForTwoMessage}</p>
-                    <p>Menu</p>
+            <div  className="flex flex-col items-center p-5">
+                    <p className="text-5xl">{resInfo?.cards[2]?.card?.card?.info.name}</p>
+                    <p className="text-2xl">{resInfo?.cards[2]?.card?.card?.info.cuisines.join(", ")}  -  {resInfo?.cards[2]?.card?.card?.info.costForTwoMessage}</p>
+                    <p className="text-2xl">Menu</p>    
                     {
-                        resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards.map((i)=>{
+                        categories &&
+                        categories.map((category , index)=>{
                             return(
-                                <div key={i.card.info.id}>
-                                    <p>{i.card.info.name}</p>
-                                </div>
+                                <ResMenuCategory
+                                    key = {category?.card?.card?.ttile} 
+                                    data = {category?.card?.card}
+                                />
                             )
                         })
-                    }
-            </div>       
+                    } 
+            </div>  
+                 
         </>
     )
 
