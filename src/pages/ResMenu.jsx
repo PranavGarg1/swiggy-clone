@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestautantMenu";
 import ResMenuCategory from "../components/ResMenuCategory";
-import { useState } from "react";
 
 const ResMenu= () =>{
     const {resId} = useParams();
@@ -18,7 +17,7 @@ const ResMenu= () =>{
                     <p className="text-2xl">Menu</p>    
                     {
                         categories &&
-                        categories.map((category , index)=>{
+                        categories.map((category)=>{
                             return(
                                 <ResMenuCategory
                                     key = {category?.card?.card?.ttile} 

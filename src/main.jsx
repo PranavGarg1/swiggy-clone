@@ -34,13 +34,14 @@ const router = createBrowserRouter([
         path: "/cart",
         element: <Cart/>,
       },
+      {
+        path: "/restaurants/:resId",
+        element: <ResMenu/>,
+        errorElement: <Error/>
+      },
     ]
   },
-  {
-    path: "/restaurants/:resId",
-    element: <ResMenu/>,
-    errorElement: <Error/>
-  },
+  
 ])
 
 createRoot(document.getElementById('root')).render(
